@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from forms import RegistrationForm
+from .forms import RegistrationForm
 # Create your views here.
 def signup(request):
 
