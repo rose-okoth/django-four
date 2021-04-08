@@ -6,14 +6,14 @@
     <div class="card">
         <div class="card-body">
             <h3 class="text-center">Sign In</h3>
-            <form action="{% url 'main:signin' %}" method="POST">
+            <form action="" method="POST">
                 {% csrf_token %}
                 
                 <label for="username">Username</label>
-                <input type="username" placeholder="Enter your username" class="form-control" name="username"> 
-
+                <input type="username" placeholder="Username" class="form-control" name="username"> 
+                <br\>
                 <label for="password">Password</label>
-                <input type="password" placeholder = "Enter your password" class="form-control" name="password">
+                <input type="password" placeholder = "Uassword" class="form-control" name="password">
                 <br>
 
 

@@ -46,9 +46,9 @@ def user_login(request):
     return render(request, 'login.html')
 
     
-# def user_logout(request):
+def user_logout(request):
 
-#     '''User logout function'''
+    '''User logout function'''
 
-#     logout(request)
-#     return redirect('main:signin')
+    logout(request)
+    return redirect('main:login')
