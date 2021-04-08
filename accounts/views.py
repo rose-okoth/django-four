@@ -26,24 +26,24 @@ def signup(request):
 
     return render(request, "signup.html", {"form": form})
 
-# def user_login(request):
-#     if request.method == 'POST':
-#         username = request.POST['username']
-#         password = request.POST['password']
-#         user = authenticate(username=username, password=password)
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
 
-#         if user is not None:
-#             if user.is_active:
+        if user is not None:
+            if user.is_active:
 
-#                 login(request, user)
-#                 return redirect('main:home')
-#             else:
-#                 return render(request, 'login.html', {"error": "Your account id is not active"})
+                login(request, user)
+                return redirect('main:home')
+            else:
+                return render(request, 'login.html', {"error": "Your account id is not active"})
 
-#         else:
-#             return render(request, 'login.html', {"error": "Invalid username or password"})
+        else:
+            return render(request, 'login.html', {"error": "Invalid username or password"})
 
-#     return render(request, 'login.html')
+    return render(request, 'login.html')
 
     
 # def user_logout(request):
