@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm
+from django.contrib.auth import authenticate, logout, login 
 # Create your views here.
 def signup(request):
 
@@ -19,7 +20,7 @@ def signup(request):
             send_welcome_email(name,email)
             # signin(request, user)
 
-            return redirect("main:login")
+            return redirect("accounts:login")
 
     else:
         form = RegistrationForm()
@@ -51,4 +52,4 @@ def user_logout(request):
     '''User logout function'''
 
     logout(request)
-    return redirect('main:login')
+    return redirect('accounts:login')
