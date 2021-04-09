@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Neighborhood
-
+from .forms import NeighborhoodForm
 def home(request):
     return render(request, 'index.html')
 
@@ -18,7 +18,7 @@ def hood(request):
 
     return render(request,"hood.html", context)
 
-def add_hood(request):
+def new_hood(request):
     '''
     A function for creating new neighborhoods
     
@@ -35,6 +35,6 @@ def add_hood(request):
     context = {
         "form":form,
     }
-    
+
     return render(request,"new_hood.html",context)
 
