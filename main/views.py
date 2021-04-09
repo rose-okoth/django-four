@@ -9,7 +9,7 @@ def hood(request):
     A function for showcasing the list of neighborhoods
     
     '''
-    queryset_list = Neighborhood.objects.active().order_by("-timestamp")
+    # queryset_list = Neighborhood.objects.active().order_by("-timestamp")
     queryset = Neighborhood.objects.all()   
 
     context = {
