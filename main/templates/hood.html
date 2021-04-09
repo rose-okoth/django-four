@@ -13,19 +13,21 @@
     <div class="row">
         {% for obj in object_list %}
 
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-                <br\><br\><br\><br\>
-                
-                <h3>{{ obj.name }}</h3>
-                <p>{{ obj.location }}</p>
-                <p>{{ obj.occupants }}</p>
-                <a href="#" class="btn btn-primary">Join</a>
-                
+            <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <br\><br\><br\><br\>
+                    
+                    <h3>{{ obj.name }}</h3>
+                    <p>Location:
+                        {{ obj.location }}</p>
+                    <p>Occupants:
+                        {{ obj.occupants }}</p>
+                    <a href="#" class="btn btn-primary">Join</a>
+                    
+                </div>
             </div>
-          </div>
-        </div>
+            </div>
 
         {% endfor %}
     </div>

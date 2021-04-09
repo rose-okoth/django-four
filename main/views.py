@@ -9,7 +9,6 @@ def hood(request):
     A function for showcasing the list of neighborhoods
     
     '''
-    # queryset_list = Neighborhood.objects.active().order_by("-timestamp")
     queryset = Neighborhood.objects.all()   
 
     context = {
@@ -18,3 +17,24 @@ def hood(request):
         }
 
     return render(request,"hood.html", context)
+
+def add_hood(request):
+    '''
+    A function for creating new neighborhoods
+    
+    '''
+    form = NeighborhoodForm(request.POST or None, request.FILES or None)
+
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.user = request.user.profile
+        instance.save()
+        messages.success(request, "Hood Successfully Created!")
+        return HttpResponseRedirect(instance.get_absolute_url())
+
+    context = {
+        "form":form,
+    }
+    
+    return render(request,"new_hood.html",context)
+
