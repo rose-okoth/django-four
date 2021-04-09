@@ -6,4 +6,6 @@ app_name = 'main'
 urlpatterns = [
     path('', views.home, name='home'),
     path('hoods', views.hood, name="hoods"),
+    path('create', views.new_hood, name='create'),
+
 ]
