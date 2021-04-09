@@ -16,14 +16,14 @@
          <div class="row">
             <div class="col-sm-12">
               <div class="thumbnail">
-                {% if obj.image %}
+                <!-- {% if obj.image %}
                   <img src='{{ obj.image.url }}' class='img-responsive'/>
-                {% endif %}
+                {% endif %} -->
                 <div class="caption">
-                  <h3><a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a><br/><small>{{ obj.publish}}</small></h3>
-                  <!-- <p>By: {{ profile.user.username }}</p>                   -->
-                  <!-- <p>{{ obj.description | linebreaks | truncatechars:120 }}</p> -->
-                  
+
+                  <h3><a href='{{ obj.get_absolute_url }}'>{{ obj.name }}</a></h3>
+                  <h3><a href='{{ obj.get_absolute_url }}'>{{ obj.location }}</a></h3>
+                  <h3><a href='{{ obj.get_absolute_url }}'>{{ obj.occupants }}</a></h3>
                   <!-- <button type="button"> <a href='{{ obj.get_absolute_url }}' class ="btn btn-info">Read More</a></button> -->
                   
                 </div>
