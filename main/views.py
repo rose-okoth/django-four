@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from .models import Neighborhood
 from .forms import NeighborhoodForm
+from django.contrib import messages
+from django.http import HttpResponse, HttpResponseRedirect, Http404
+
 def home(request):
     return render(request, 'index.html')
 
@@ -27,7 +30,7 @@ def new_hood(request):
 
     if form.is_valid():
         instance = form.save(commit=False)
-        instance.user = request.user.profile
+        instance.user = request.user
         instance.save()
         messages.success(request, "Hood Successfully Created!")
         return HttpResponseRedirect(instance.get_absolute_url())
