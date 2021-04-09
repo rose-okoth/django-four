@@ -6,11 +6,11 @@ def home(request):
 
 def hood(request):
     '''
-    A function for showcasing the list of pneighborhoods
+    A function for showcasing the list of neighborhoods
     
     '''
-    queryset_list = Hood.objects.active().order_by("-timestamp")
-    queryset = Hood.objects.all()   
+    queryset_list = Neighborhood.objects.active().order_by("-timestamp")
+    queryset = Neighborhood.objects.all()   
 
     context = {
             "title":"Neighborhoods",
