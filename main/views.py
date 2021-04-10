@@ -15,7 +15,7 @@ def hood(request):
     queryset = Neighborhood.objects.all()   
 
     context = {
-            "title":"Neighborhoods",
+            "title":"Hoods",
             "object_list":queryset
         }
 

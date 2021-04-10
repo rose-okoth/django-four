@@ -11,10 +11,18 @@ class Neighborhood(models.Model):
     location = models.CharField(max_length=250)
     occupants = models.CharField(max_length=250)
     slug = models.SlugField(unique=True)
-    # admin = models.ForeignKey(admin, on_delete=models.CASCADE)
+    healthline = models.IntegerField(null=True, blank=True)
+    policeline = models.IntegerField(null=True, blank=True)
+    # admin = models.ForeignKey("Profile", on_delete=models.CASCADE, related_name='hood')
 
     def __str__(self):
         return self.title
+
+    def create_neighborhood(self):
+        self.save
+
+    def delete_neighborhood(self):
+        self.save
 
     def get_absolute_url(self):
         return reverse("main:home", kwargs={"slug": self.slug})
