@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Neighborhood, Profile, Business, Post
-from .forms import NeighborhoodForm, UserUpdateForm, ProfileUpdateForm, PostForm
+from .forms import NeighborhoodForm, UserUpdateForm, ProfileUpdateForm, PostForm, BusinessForm
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from urllib.parse import quote_plus
@@ -73,26 +73,6 @@ def user_profile(request):
 
     return render(request, 'profile.html', context)
 
-def create_post(request, slug=None):
-    '''
-    A function for adding posts
-    
-    '''
-    hood = Neighborhood.objects.get(slug=slug)
-    if request.method == 'POST':
-        form = PostForm(request.POST or None)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.user = request.user.profile
-            post.hood = hood
-            post.save()
-            messages.success(request, "Post Successfully Created!")
-            return redirect('main:detail', slug)
-    else:
-        form = PostForm
-
-    return render(request,'post.html', {'form': form, 'hood': hood})
-
 def neighborhood_detail(request,slug=None):
     '''
     A function for showcasing the details of a neighborhood
@@ -107,3 +87,24 @@ def neighborhood_detail(request,slug=None):
         }
 
     return render(request, "hood_detail.html", context)
+
+
+def create_business(request, slug=None):
+    '''
+    A function for adding businesses
+    
+    '''
+    hood = Neighborhood.objects.get(slug=slug)
+    if request.method == 'POST':
+        form = BusinessForm(request.POST or None)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user.profile
+            post.hood = hood
+            post.save()
+            messages.success(request, "Business Successfully Created!")
+            return redirect('main:detail', slug)
+    else:
+        form = PostForm
+
+    return render(request,'business.html', {'form': form, 'hood': hood})
