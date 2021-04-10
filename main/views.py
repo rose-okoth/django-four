@@ -41,3 +41,33 @@ def new_hood(request):
 
     return render(request,"new_hood.html",context)
 
+def user_profile(request):
+    '''
+    A function for creating the user profile and updating
+    
+    '''
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST,
+                                   request.FILES,
+                                   instance=request.user.profile)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Your account has been updated!')
+            return redirect('main:profile')
+
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+
+
+    profile = request.user.profile.project.all
+
+    context = {
+        'u_form': u_form,
+        'p_form': p_form,
+        'profile': profile
+    }
+
+    return render(request, 'profile.html', context)

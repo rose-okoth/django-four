@@ -5,6 +5,8 @@ from django.db.models.signals import pre_save, post_save
 from django.utils.text import slugify
 from django.urls import reverse
 from django.dispatch import receiver
+from PIL import Image
+
 
 # Create your models here.
 class Neighborhood(models.Model):
