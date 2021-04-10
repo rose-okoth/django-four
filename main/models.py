@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.db.models.signals import pre_save, post_save
 from django.utils.text import slugify
 from django.urls import reverse
+from django.dispatch import receiver
 
 # Create your models here.
 class Neighborhood(models.Model):
@@ -13,7 +14,7 @@ class Neighborhood(models.Model):
     slug = models.SlugField(unique=True)
     healthline = models.IntegerField(null=True, blank=True)
     policeline = models.IntegerField(null=True, blank=True)
-    # admin = models.ForeignKey("Profile", on_delete=models.CASCADE, related_name='hood')
+    admin = models.ForeignKey("Profile", on_delete=models.CASCADE, related_name='neighborhood')
 
     def __str__(self):
         return self.title
@@ -51,3 +52,33 @@ def pre_save_post_receiver(sender, instance, *args, **kwargs):
         instance.slug = create_slug(instance)
 
 pre_save.connect(pre_save_post_receiver, sender=Neighborhood)
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    bio = models.CharField(max_length=500, null=True, blank=True)
+    location = models.CharField(max_length=250, null=True, blank=True)
+    hood = models.ForeignKey(Neighborhood, on_delete=models.SET_NULL, null=True, blank=True, related_name='members')
+
+    def __str__(self):
+        return f'{self.user.username} Profile'
+
+    def save(self, *args, **kwargs):
+        super(Profile, self).save(*args, **kwargs)
+
+        img = Image.open(self.image.path)
+
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
+
+    @receiver(post_save, sender=User)
+    def create_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+
+    @receiver(post_save, sender=User)
+    def save_profile(sender, instance, **kwargs):
+        instance.profile.save()
