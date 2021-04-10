@@ -8,6 +8,7 @@ urlpatterns = [
     path('hoods', views.hood, name="hoods"),
     path('create', views.new_hood, name='create'),
     path('profile', views.user_profile, name='profile'),
+    path('post', views.create_post, name='post'),
     re_path(r'^(?P<slug>[\w-]+)/detail/$', views.neighborhood_detail, name='detail'),
 
 ]
