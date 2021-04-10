@@ -3,6 +3,7 @@ from .models import Neighborhood, Profile
 from .forms import NeighborhoodForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect, Http404
+from urllib.parse import quote_plus
 
 def home(request):
     return render(request, 'index.html')
@@ -30,7 +31,7 @@ def new_hood(request):
 
     if form.is_valid():
         instance = form.save(commit=False)
-        instance.user = request.user
+        instance.user = request.user.profile
         instance.save()
         messages.success(request, "Hood Successfully Created!")
         return HttpResponseRedirect(instance.get_absolute_url())
@@ -54,7 +55,7 @@ def user_profile(request):
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            messages.success(request, f'Your account has been updated!')
+            messages.success(request, f'Account Successfully Updated!')
             return redirect('main:profile')
 
     else:
@@ -71,3 +72,54 @@ def user_profile(request):
     }
 
     return render(request, 'profile.html', context)
+
+def create_post(request, hood_id):
+    '''
+    Function for user to create a neighborhood post
+    '''
+    hood = NeighbourHood.objects.get(id=hood_id)
+
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.hood = hood
+            post.user = request.user.profile
+            post.save()
+            messages.success(request, "Post Successfully Created!")
+            return redirect('single-hood', hood.id)
+
+    context = {
+        'form': PostForm()
+        }
+
+    return render(request, 'post.html', context)
+
+def neighborhood_detail(request,slug=None):
+    '''
+    A function for showcasing the details of a neighborhood
+    
+    '''
+    instance = get_object_or_404(Project, slug=slug)
+    share_string = quote_plus(instance.description)
+    reviews = Review.objects.filter()
+    
+    # average1 = reviews.aggregate(Avg("design_rating"))["design_rating__avg"]
+    # average2 = reviews.aggregate(Avg("usability_rating"))["usability_rating__avg"]
+    # average3 = reviews.aggregate(Avg("content_rating"))["content_rating__avg"]
+    # average = (average1 + average2 + average3) / 3
+
+    # if average == None:
+    #     average = 0
+    # average = round(average, 2)
+
+    context = {
+            "title":instance.name,
+            "instance":instance,
+            "share_string":share_string,
+            # "instance": instance,
+            # "reviews": reviews,
+            # "average": average,
+        }
+
+    return render(request, "hood_detail.html", context)

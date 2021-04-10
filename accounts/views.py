@@ -22,7 +22,7 @@ def signup(request):
             email = request.POST["email"]
             send_welcome_email(name,email)
             # signin(request, user)
-
+            messages.success(request, "Successfully Signed Up!")
             return redirect("accounts:login")
 
     else:
