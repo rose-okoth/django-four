@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Neighborhood, Profile
+from .models import Neighborhood, Profile, Business, Post
 from .forms import NeighborhoodForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect, Http404
@@ -100,9 +100,9 @@ def neighborhood_detail(request,slug=None):
     A function for showcasing the details of a neighborhood
     
     '''
-    instance = get_object_or_404(Project, slug=slug)
-    share_string = quote_plus(instance.description)
-    reviews = Review.objects.filter()
+    instance = get_object_or_404(Neighborhood, slug=slug)
+    # share_string = quote_plus(instance.description)
+    # reviews = Review.objects.filter()
     
     # average1 = reviews.aggregate(Avg("design_rating"))["design_rating__avg"]
     # average2 = reviews.aggregate(Avg("usability_rating"))["usability_rating__avg"]
@@ -116,7 +116,7 @@ def neighborhood_detail(request,slug=None):
     context = {
             "title":instance.name,
             "instance":instance,
-            "share_string":share_string,
+            # "share_string":share_string,
             # "instance": instance,
             # "reviews": reviews,
             # "average": average,

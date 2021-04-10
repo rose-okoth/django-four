@@ -19,7 +19,7 @@ class Neighborhood(models.Model):
     admin = models.ForeignKey("Profile", on_delete=models.CASCADE, related_name='neighborhood')
 
     def __str__(self):
-        return self.title
+        return self.name
 
     def create_neighborhood(self):
         self.save
@@ -28,7 +28,7 @@ class Neighborhood(models.Model):
         self.save
 
     def get_absolute_url(self):
-        return reverse("main:home", kwargs={"slug": self.slug})
+        return reverse("main:detail", kwargs={"slug": self.slug})
 
 
 def create_slug(instance, new_slug=None):

@@ -1,5 +1,5 @@
 from . import views
-from django.urls import path
+from django.urls import path, re_path
 
 app_name = 'main'
 
@@ -8,5 +8,6 @@ urlpatterns = [
     path('hoods', views.hood, name="hoods"),
     path('create', views.new_hood, name='create'),
     path('profile', views.user_profile, name='profile'),
+    re_path(r'^(?P<slug>[\w-]+)/detail/$', views.neighborhood_detail, name='detail'),
 
 ]
