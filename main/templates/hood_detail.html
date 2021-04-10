@@ -6,7 +6,6 @@
 
 {% block content %}
 <div class="container">
-<div class='col-sm-6 col-sm-offset-3'>
     <br\><br\><br\><br\>
     <h1>{{instance.name}}</h1>
     
@@ -18,8 +17,7 @@
     <p>Posted by: {{ user.username }}</p>
     {% endif %}
     
-<div class='row'>
-    <div class='col-sm-12'>
+    <div class='col-md-12'>
 
         <h4>Location:</h4>
             <p class="text-secondary">{{ instance.location }}</p>
@@ -36,31 +34,51 @@
             <hr/>
 
         <a href="{% url 'main:post' instance.slug %}" class="btn btn-primary">Add Post</a>
+        <a href="{% url 'main:business' instance.slug %}" class="btn btn-primary">Add Business</a>
 
     <hr/>
     <br/>
 
-    <div class="card">
-        <div class="card-body">
-        <h3>Posts</h3>
-           <ul>
-               {% for post in posts %}
-               <br/>
+        <div class="card">
+            <div class="card-body">
+            <h3>Posts</h3>
+            <ul>
+                {% for post in posts %}
 
-                    <li>By: {{ post.user.user.username }}</li>
-                    <br/>
-                    <li>Title: {{ post.title }}</li>
-                    <br/>
-                    <li>Post: {{ post.post }}</li>    
-                    <br/>
-                    <li>Date: {{ post.date }}</li>                        
-                    <hr/>
+                        <li>By: {{ post.user.user.username }}</li>
+                        <br/>
+                        <li>Title: {{ post.title }}</li>
+                        <br/>
+                        <li>Post: {{ post.post }}</li>    
+                        <br/>
+                        <li>Date: {{ post.date }}</li>                        
+                        <hr/>
 
-               {% endfor %}
-           </ul> 
-           <hr/>
+                {% endfor %}
+            </ul> 
+            <hr/>
+            </div>
         </div>
-    </div>
-</div>
+<hr/>
+        <div class="card">
+            <div class="card-body">
+            <h3>Businesses</h3>
+               <ul>
+                   {% for business in business %}
+                   <br/>
+    
+                        <li>By: {{ business.user.user.username }}</li>
+                        <br/>
+                        <li>Name: {{ business.name }}</li>
+                        <br/>
+                        <li>Email: {{ business.email}}</li>    
+                        <br/>
+                        <li>Description: {{ business.description }}</li>                        
+                        <hr/>
+    
+                   {% endfor %}
+               </ul> 
+               <hr/>
+            </div>
 </div>
 {% endblock %}

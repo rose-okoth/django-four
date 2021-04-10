@@ -88,6 +88,26 @@ def neighborhood_detail(request,slug=None):
 
     return render(request, "hood_detail.html", context)
 
+def create_post(request, slug=None):
+    '''
+    A function for adding businesses
+    
+    '''
+    hood = Neighborhood.objects.get(slug=slug)
+    if request.method == 'POST':
+        form = PostForm(request.POST or None)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user.profile
+            post.hood = hood
+            post.save()
+            messages.success(request, "Post Successfully Created!")
+            return redirect('main:detail', slug)
+    else:
+        form = PostForm
+
+    return render(request,'post.html', {'form': form, 'hood': hood})
+
 
 def create_business(request, slug=None):
     '''
@@ -105,6 +125,6 @@ def create_business(request, slug=None):
             messages.success(request, "Business Successfully Created!")
             return redirect('main:detail', slug)
     else:
-        form = PostForm
+        form = BusinessForm
 
     return render(request,'business.html', {'form': form, 'hood': hood})

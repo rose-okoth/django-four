@@ -9,6 +9,7 @@ urlpatterns = [
     path('create', views.new_hood, name='create'),
     path('profile', views.user_profile, name='profile'),
     re_path(r'^(?P<slug>[\w-]+)/post/$', views.create_post, name='post'),
+    re_path(r'^(?P<slug>[\w-]+)/business/$', views.create_business, name='business'),
     re_path(r'^(?P<slug>[\w-]+)/detail/$', views.neighborhood_detail, name='detail'),
 
 ]
