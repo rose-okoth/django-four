@@ -73,27 +73,25 @@ def user_profile(request):
 
     return render(request, 'profile.html', context)
 
-def create_post(request, hood_id):
+def create_post(request, slug=None):
     '''
-    Function for user to create a neighborhood post
+    A function for adding posts
+    
     '''
-    hood = NeighbourHood.objects.get(id=hood_id)
-
+    hood = Neighborhood.objects.get(slug=slug)
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST or None)
         if form.is_valid():
             post = form.save(commit=False)
-            post.hood = hood
             post.user = request.user.profile
+            post.hood = hood
             post.save()
             messages.success(request, "Post Successfully Created!")
-            return redirect('single-hood', hood.id)
+            return redirect('main:detail', slug)
+    else:
+        form = PostForm
 
-    context = {
-        'form': PostForm()
-        }
-
-    return render(request, 'post.html', context)
+    return render(request,'post.html', {'form': form, 'hood': hood})
 
 def neighborhood_detail(request,slug=None):
     '''
