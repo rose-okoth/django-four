@@ -1,6 +1,6 @@
-from django.shortcuts import render
-from .models import Neighborhood
-from .forms import NeighborhoodForm
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Neighborhood, Profile
+from .forms import NeighborhoodForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 
@@ -62,7 +62,7 @@ def user_profile(request):
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
 
-    profile = request.user.profile.project.all
+    profile = request.user.profile.neighborhood.all
 
     context = {
         'u_form': u_form,

@@ -1,5 +1,6 @@
 from django import forms
-from .models import Neighborhood
+from django.contrib.auth.models import User
+from .models import Neighborhood, Profile
 
 class NeighborhoodForm(forms.ModelForm):
     class Meta:

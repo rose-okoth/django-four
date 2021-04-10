@@ -69,8 +69,8 @@
         <li class="nav-item"><a href="{%url 'main:create'%}" class="nav-link">New Hood</a></li>
         <li class="nav-item"><a href="{%url 'main:hoods'%}" class="nav-link">Hoods</a></li>
         <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
-        <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">Profile</a>
-          <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="{%url 'accounts:logout'%}">Logout</a></div>
+        <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">{{ user.username }}</a>
+          <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="{% url 'main:profile' %}">Profile</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="{%url 'accounts:logout'%}">Logout</a></div>
         </li>
       </ul>
       <!-- <form class="form-inline mr-auto" target="_self">
