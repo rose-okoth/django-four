@@ -8,7 +8,7 @@
         <br\><br\><br\><br\>
         <h1>Profile</h1>
         <div class="media">
-            <img class="rounded-circle" src="{{ user.profile.image.url }}">
+            <img class="rounded-circle img-thumbnail" src="{{ user.profile.image.url }}">
             <div class="media-body">
 
                 <h2>Username</h2>
@@ -18,9 +18,7 @@
                 <h2>Bio</h2>
                 <p class="text-secondary">{{ user.profile.bio }}</p>
                 <h2>Hood</h2>
-                {% for p in profile %}
-                    <p class="text-secondary">{{ p.title }}</p>
-                {% endfor %}
+                <p class="text-secondary">{{ user.profile.hood }}</p>
 
             </div>
         </div>
