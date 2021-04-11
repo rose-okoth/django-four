@@ -14,8 +14,6 @@ An application that allows you to be in the loop about everything happening in y
 
 ![Alt text](/media/Screenshot.png?raw=true "Landing Page")
 
-<!-- ![Alt text](/media/Screenshot-1.png?raw=true "Project Post") -->
-
 # BDD
 
 * Users should be able to:
