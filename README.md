@@ -76,8 +76,8 @@ An application that allows you to be in the loop about everything happening in y
 
 # API Endpoints
 
-* [http://127.0.0.1:8000/api/hoods/](http://127.0.0.1:8000/api/hoods/)
-* [http://127.0.0.1:8000/api/view_hoods/](http://127.0.0.1:8000/api/view_hoods/)
+* [http://boonwatch.heroku.com/api/hoods/](http://boonwatch.heroku.com/api/hoods/)
+* [http://boonwatch.heroku.com/api/view_hoods/](http://boonwatch.heroku.com/api/view_hoods/)
     
 # Technologies Used
 
