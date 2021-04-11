@@ -40,7 +40,7 @@ def user_login(request):
             if user.is_active:
 
                 login(request, user)
-                return redirect('main:home')
+                return redirect('main:hoods')
             else:
                 return render(request, 'login.html', {"error": "Your account id is not active"})
 

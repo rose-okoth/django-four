@@ -28,21 +28,35 @@
                     <div class="collapse navbar-collapse"
                         id="navcol-1">
                         <ul class="nav navbar-nav">
+                        {% if user.is_authenticated %}
+
                             <li class="nav-item" role="presentation"><a class="nav-link active" href="{%url 'main:hoods'%}">Hoods</a></li>
-                            <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">Dropdown </a>
-                                <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                            <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">Accounts</a>
+                                <div class="dropdown-menu" role="menu">
+                                    <a class="dropdown-item" role="presentation" href="{%url 'main:create'%}">New Hood</a>
+                                    <a class="dropdown-item" role="presentation" href="{% url 'main:profile' %}">Profile</a>
+                                    <a class="dropdown-item" role="presentation" href="{%url 'accounts:logout'%}">Logout</a></div>
                             </li>
                         </ul>
                         <form class="form-inline mr-auto" target="_self">
                             <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" name="search" id="search-field"></div>
-                        </form><span class="navbar-text"> <a href="{%url 'accounts:login'%}" class="login">Log In</a></span><a class="btn btn-light action-button" role="button" href="{%url 'accounts:signup'%}">Sign Up</a></div>
+
+                        {% else %}
+
+                        </form><span class="navbar-text"> 
+                            <a href="{%url 'accounts:login'%}" class="login">Log In</a></span>
+                            <a class="btn btn-light action-button" role="button" href="{%url 'accounts:signup'%}">Sign Up</a></div>
+
+                        {% endif %}
+
                 </div>
             </nav>
             <div class="container hero">
                 <div class="row">
                     <div class="col-12 col-lg-6 col-xl-5 offset-xl-1">
                         <h1>Welcome to HoodWatch!</h1>
-                        <p>Stay in the loop with everything happening in your neighborhood. From contact information of different handyman to meeting announcements or even alerts.</p><button class="btn btn-light btn-lg action-button" type="button">Learn More</button>
+                        <p>Stay in the loop with everything happening in your neighborhood. From contact information of different handyman to meeting announcements or even alerts.</p>
+                        <button class="btn btn-light btn-lg action-button" type="button">Join now</button>
                     </div>
                 </div>
             </div>

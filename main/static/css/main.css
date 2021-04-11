@@ -10,9 +10,12 @@ body {
 }
 
 .jumbotron {
-	background:linear-gradient(135deg, #172a74, #21a9af) !important;
+	background:linear-gradient(135deg, #172a74, #21a9af) ;
 	background-color:#184e8e;
 	color:whitesmoke;
 	text-align: center;
+	background-image: url(https://coolwallpapers.me/picsup/6146477-stars-fence-homes-flowers-clouds-trees-digital-art-sky-evening.jpg)!important;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 

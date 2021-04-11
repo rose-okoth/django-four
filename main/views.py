@@ -8,10 +8,13 @@ from django.db.models import Q
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import HoodsSerializer, ViewHoodSerializer
+from django.contrib.auth.decorators import login_required
+
 
 def home(request):
     return render(request, 'index.html')
 
+@login_required(login_url='accounts:login')
 def hood(request):
     '''
     A function for showcasing the list of neighborhoods
@@ -26,6 +29,7 @@ def hood(request):
 
     return render(request,"hood.html", context)
 
+@login_required(login_url='accounts:login')
 def new_hood(request):
     '''
     A function for creating new neighborhoods
@@ -46,6 +50,7 @@ def new_hood(request):
 
     return render(request,"new_hood.html",context)
 
+@login_required(login_url='accounts:login')
 def user_profile(request):
     '''
     A function for creating the user profile and updating
@@ -77,6 +82,7 @@ def user_profile(request):
 
     return render(request, 'profile.html', context)
 
+@login_required(login_url='accounts:login')
 def neighborhood_detail(request,slug=None):
     '''
     A function for showcasing the details of a neighborhood
@@ -101,6 +107,7 @@ def neighborhood_detail(request,slug=None):
 
     return render(request, "hood_detail.html", context)
 
+@login_required(login_url='accounts:login')
 def create_post(request, slug=None):
     '''
     A function for adding businesses
@@ -121,7 +128,7 @@ def create_post(request, slug=None):
 
     return render(request,'post.html', {'form': form, 'hood': hood})
 
-
+@login_required(login_url='accounts:login')
 def create_business(request, slug=None):
     '''
     A function for adding businesses
@@ -142,6 +149,7 @@ def create_business(request, slug=None):
 
     return render(request,'business.html', {'form': form, 'hood': hood})
 
+@login_required(login_url='accounts:login')
 def hood_update(request, slug=None):
 
     '''Updating hoods function'''
@@ -160,6 +168,7 @@ def hood_update(request, slug=None):
         }
     return render(request,"new_hood.html",context) 
 
+@login_required(login_url='accounts:login')
 def hood_delete(request, slug=None):
 
     '''Deleting hoods function'''
@@ -169,6 +178,7 @@ def hood_delete(request, slug=None):
     messages.success(request, "Successfully Deleted!")
     return redirect("main:hoods")
 
+@login_required(login_url='accounts:login')
 def join_hood(request, slug=None):
     hood = get_object_or_404(Neighborhood, slug=slug)
     request.user.profile.hood = hood
@@ -176,7 +186,7 @@ def join_hood(request, slug=None):
     messages.success(request, "Welcome to Your Hood!")
     return redirect('main:detail', slug)
 
-
+@login_required(login_url='accounts:login')
 def leave_hood(request, slug=None):
     hood = get_object_or_404(Neighborhood, slug=slug)
     request.user.profile.hood = None
