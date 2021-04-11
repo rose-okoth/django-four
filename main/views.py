@@ -146,3 +146,12 @@ def project_update(request, slug=None):
             "form":form,
         }
     return render(request,"new_hood.html",context) 
+
+def project_delete(request, slug=None):
+
+    '''Deleting hoods function'''
+
+    instance = get_object_or_404(Project, slug=slug)
+    instance.delete()
+    messages.success(request, "Successfully Deleted!")
+    return redirect("main:home")
