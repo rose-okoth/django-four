@@ -157,14 +157,14 @@ def hood_delete(request, slug=None):
     return redirect("main:hoods")
 
 def join_hood(request, slug=None):
-    hood = get_object_or_404(Hood, slug=slug)
+    hood = get_object_or_404(Neighborhood, slug=slug)
     request.user.profile.hood = hood
     request.user.profile.save()
     return redirect('main:detail', slug)
 
 
 def leave_hood(request, slug=None):
-    hood = get_object_or_404(Hood, slug=islug)
+    hood = get_object_or_404(Neighborhood, slug=slug)
     request.user.profile.hood = None
     request.user.profile.save()
     return redirect("main:hoods")

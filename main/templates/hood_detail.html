@@ -33,7 +33,9 @@
 
             <hr/>
 
-        <a href='{% url "main:update" instance.slug %}' class ="btn btn-success">Edit</a>
+        <a href='{% url "main:update" instance.slug %}' class ="btn btn-primary">Edit</a>
+
+        <a href="{% url 'main:leave' instance.slug %}" class="btn btn-danger">Leave</a>
 
         <a href='{% url "main:delete" instance.slug %}' class ="btn btn-danger" onclick="return confirm('Are you sure you want to delete this?')">Delete</a>
     
