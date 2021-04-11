@@ -5,6 +5,9 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from urllib.parse import quote_plus
 from django.db.models import Q
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import HoodsSerializer
 
 def home(request):
     return render(request, 'index.html')
@@ -180,3 +183,9 @@ def leave_hood(request, slug=None):
     request.user.profile.save()
     messages.success(request, "Goodbye!")
     return redirect("main:hoods")
+
+class HoodsList(APIView):
+    def get(self, request, format=None):
+        all_hoods = Neighborhood.objects.all()
+        serializers = HoodsSerializer(all_hoods, many=True)
+        return Response(serializers.data)
