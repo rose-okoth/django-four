@@ -76,8 +76,8 @@ An application that allows you to be in the loop about everything happening in y
 
 # API Endpoints
 
-<!-- * [https://fauxwwwards.herokuapp.com/api/project/](https://fauxwwwards.herokuapp.com/api/project/)
-* [https://fauxwwwards.herokuapp.com/api/profile/](https://fauxwwwards.herokuapp.com/api/profile/) -->
+* [http://127.0.0.1:8000/api/hoods/](http://127.0.0.1:8000/api/hoods/)
+* [http://127.0.0.1:8000/api/view_hoods/](http://127.0.0.1:8000/api/view_hoods/)
     
 # Technologies Used
 

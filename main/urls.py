@@ -15,4 +15,6 @@ urlpatterns = [
     re_path(r'^(?P<slug>[\w-]+)/delete/$', views.hood_delete, name='delete'),
     re_path(r'^(?P<slug>[\w-]+)/join/$', views.join_hood, name='join'),
     re_path(r'^(?P<slug>[\w-]+)/leave/$', views.leave_hood, name='leave'),
+    path('api/hoods/', views.HoodsList.as_view()),
+    path('api/view_hoods/', views.ViewHoodList.as_view()),
 ]

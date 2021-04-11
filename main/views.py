@@ -7,7 +7,7 @@ from urllib.parse import quote_plus
 from django.db.models import Q
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializer import HoodsSerializer
+from .serializer import HoodsSerializer, ViewHoodSerializer
 
 def home(request):
     return render(request, 'index.html')
@@ -188,4 +188,10 @@ class HoodsList(APIView):
     def get(self, request, format=None):
         all_hoods = Neighborhood.objects.all()
         serializers = HoodsSerializer(all_hoods, many=True)
+        return Response(serializers.data)
+
+class ViewHoodList(APIView):
+    def get(self, request, format=None):
+        all_view_hoods = Neighborhood.objects.all()
+        serializers = ViewHoodSerializer(all_view_hoods, many=True)
         return Response(serializers.data)
