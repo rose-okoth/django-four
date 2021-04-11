@@ -53,13 +53,13 @@
             <ul>
                 {% for post in posts %}
 
-                <li>By: {{ post.user.user.username }}</li>
-                <br/>
                 <li>Title: {{ post.title }}</li>
                 <br/>
                 <li>Post: {{ post.post }}</li>    
                 <br/>
                 <li>Date: {{ post.date }}</li>                        
+                <br/>
+                <li>By: {{ post.user.user.username }}</li>
                 <hr/>
 
                 {% endfor %}
@@ -79,15 +79,14 @@
             <h3>Businesses</h3>
                <ul>
                    {% for business in business %}
-                   <br/>
     
-                        <li>By: {{ business.user.user.username }}</li>
-                        <br/>
                         <li>Name: {{ business.name }}</li>
                         <br/>
                         <li>Email: {{ business.email}}</li>    
                         <br/>
                         <li>Description: {{ business.description }}</li>                        
+                        <br/>
+                        <li>By: {{ business.user.user.username }}</li>
                         <hr/>
     
                    {% endfor %}

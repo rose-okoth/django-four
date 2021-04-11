@@ -4,6 +4,7 @@ from .forms import NeighborhoodForm, UserUpdateForm, ProfileUpdateForm, PostForm
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from urllib.parse import quote_plus
+from django.db.models import Q
 
 def home(request):
     return render(request, 'index.html')
@@ -55,7 +56,7 @@ def user_profile(request):
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            messages.success(request, f'Account Successfully Updated!')
+            messages.success(request, f'Profile Successfully Updated!')
             return redirect('main:profile')
 
     else:
@@ -81,6 +82,12 @@ def neighborhood_detail(request,slug=None):
     instance = get_object_or_404(Neighborhood, slug=slug)
     posts = Post.objects.filter()
     business = Business.objects.filter()
+
+    query = request.GET.get("q")
+    if query:
+        queryset_list = queryset_list.filter(
+            Q(name__icontains=query) 
+            ).distinct()
 
     context = {
             "title":instance.name,
