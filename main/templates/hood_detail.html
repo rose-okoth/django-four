@@ -33,11 +33,11 @@
 
             <hr/>
 
-        <a href='{% url "main:update" instance.slug %}' class ="btn btn-primary">Edit</a>
+        <a href='{% url "main:update" instance.slug %}' class ="btn btn-outline-primary">Edit</a>
 
-        <a href="{% url 'main:leave' instance.slug %}" class="btn btn-danger">Leave</a>
+        <a href="{% url 'main:leave' instance.slug %}" class="btn btn-outline-danger">Leave</a>
 
-        <a href='{% url "main:delete" instance.slug %}' class ="btn btn-danger" onclick="return confirm('Are you sure you want to delete this?')">Delete</a>
+        <a href='{% url "main:delete" instance.slug %}' class ="btn btn-outline-danger" onclick="return confirm('Are you sure you want to delete this?')">Delete</a>
     
     <hr/>
     <br/>
@@ -61,7 +61,7 @@
             </ul> 
             <hr/>
 
-            <a href="{% url 'main:post' instance.slug %}" class="btn btn-primary">Add Post</a>
+            <a href="{% url 'main:post' instance.slug %}" class="btn btn-outline-primary">Add Post</a>
 
             </div>
         </div>
@@ -86,7 +86,7 @@
                </ul> 
                <hr/>
 
-               <a href="{% url 'main:business' instance.slug %}" class="btn btn-primary">Add Business</a>
+               <a href="{% url 'main:business' instance.slug %}" class="btn btn-outline-primary">Add Business</a>
 
             </div>
 </div>
