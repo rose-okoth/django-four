@@ -13,5 +13,6 @@ urlpatterns = [
     re_path(r'^(?P<slug>[\w-]+)/detail/$', views.neighborhood_detail, name='detail'),
     re_path(r'^(?P<slug>[\w-]+)/edit/$', views.hood_update, name='update'),
     re_path(r'^(?P<slug>[\w-]+)/delete/$', views.hood_delete, name='delete'),
-
+    re_path(r'^(?P<slug>[\w-]+)/join/$', views.join_hood, name='join'),
+    re_path(r'^(?P<slug>[\w-]+)/leave/$', views.leave_hood, name='leave'),
 ]

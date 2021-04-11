@@ -155,3 +155,16 @@ def hood_delete(request, slug=None):
     instance.delete()
     messages.success(request, "Successfully Deleted!")
     return redirect("main:hoods")
+
+def join_hood(request, slug=None):
+    hood = get_object_or_404(Hood, slug=slug)
+    request.user.profile.hood = hood
+    request.user.profile.save()
+    return redirect('main:detail', slug)
+
+
+def leave_hood(request, slug=None):
+    hood = get_object_or_404(Hood, slug=islug)
+    request.user.profile.hood = None
+    request.user.profile.save()
+    return redirect("main:hoods")
