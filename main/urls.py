@@ -11,5 +11,7 @@ urlpatterns = [
     re_path(r'^(?P<slug>[\w-]+)/post/$', views.create_post, name='post'),
     re_path(r'^(?P<slug>[\w-]+)/business/$', views.create_business, name='business'),
     re_path(r'^(?P<slug>[\w-]+)/detail/$', views.neighborhood_detail, name='detail'),
+    re_path(r'^(?P<slug>[\w-]+)/edit/$', views.hood_update, name='update'),
+    re_path(r'^(?P<slug>[\w-]+)/delete/$', views.hood_delete, name='delete'),
 
 ]

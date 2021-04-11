@@ -129,11 +129,11 @@ def create_business(request, slug=None):
 
     return render(request,'business.html', {'form': form, 'hood': hood})
 
-def project_update(request, slug=None):
+def hood_update(request, slug=None):
 
     '''Updating hoods function'''
 
-    instance = get_object_or_404(Project, slug=slug)
+    instance = get_object_or_404(Neighborhood, slug=slug)
     form = NeighborhoodForm(request.POST or None, request.FILES or None, instance=instance)
     if form.is_valid():
         instance = form.save(commit=False)
@@ -141,17 +141,17 @@ def project_update(request, slug=None):
         messages.success(request, "Neighborhood Updated!")
         return HttpResponseRedirect(instance.get_absolute_url())
     context = {
-            "title":instance.title,
+            "name":instance.name,
             "instance":instance,
             "form":form,
         }
     return render(request,"new_hood.html",context) 
 
-def project_delete(request, slug=None):
+def hood_delete(request, slug=None):
 
     '''Deleting hoods function'''
 
-    instance = get_object_or_404(Project, slug=slug)
+    instance = get_object_or_404(Neighborhood, slug=slug)
     instance.delete()
     messages.success(request, "Successfully Deleted!")
-    return redirect("main:home")
+    return redirect("main:hoods")
