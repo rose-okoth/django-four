@@ -128,3 +128,21 @@ def create_business(request, slug=None):
         form = BusinessForm
 
     return render(request,'business.html', {'form': form, 'hood': hood})
+
+def project_update(request, slug=None):
+
+    '''Updating hoods function'''
+
+    instance = get_object_or_404(Project, slug=slug)
+    form = NeighborhoodForm(request.POST or None, request.FILES or None, instance=instance)
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+        messages.success(request, "Neighborhood Updated!")
+        return HttpResponseRedirect(instance.get_absolute_url())
+    context = {
+            "title":instance.title,
+            "instance":instance,
+            "form":form,
+        }
+    return render(request,"new_hood.html",context) 
