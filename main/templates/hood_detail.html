@@ -53,14 +53,14 @@
             <ul>
                 {% for post in posts %}
 
-                        <li>By: {{ post.user.user.username }}</li>
-                        <br/>
-                        <li>Title: {{ post.title }}</li>
-                        <br/>
-                        <li>Post: {{ post.post }}</li>    
-                        <br/>
-                        <li>Date: {{ post.date }}</li>                        
-                        <hr/>
+                <li>By: {{ post.user.user.username }}</li>
+                <br/>
+                <li>Title: {{ post.title }}</li>
+                <br/>
+                <li>Post: {{ post.post }}</li>    
+                <br/>
+                <li>Date: {{ post.date }}</li>                        
+                <hr/>
 
                 {% endfor %}
             </ul> 

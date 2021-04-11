@@ -79,11 +79,14 @@ def neighborhood_detail(request,slug=None):
     
     '''
     instance = get_object_or_404(Neighborhood, slug=slug)
-    
+    posts = Post.objects.filter()
+    business = Business.objects.filter()
 
     context = {
             "title":instance.name,
             "instance":instance,
+            "posts":posts,
+            "business":business
         }
 
     return render(request, "hood_detail.html", context)
