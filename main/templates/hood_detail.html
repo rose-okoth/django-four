@@ -42,6 +42,11 @@
     <hr/>
     <br/>
 
+    <h3>Notice Board</h3>
+<hr/>
+<div class="row">
+    <hr/>
+    <div class="col md-6">
         <div class="card">
             <div class="card-body">
             <h3>Posts</h3>
@@ -65,7 +70,10 @@
 
             </div>
         </div>
+    </div>
 <hr/>
+<div class="col md-6">
+
         <div class="card">
             <div class="card-body">
             <h3>Businesses</h3>
@@ -89,5 +97,7 @@
                <a href="{% url 'main:business' instance.slug %}" class="btn btn-outline-primary">Add Business</a>
 
             </div>
+        </div>
+        </div>
 </div>
 {% endblock %}

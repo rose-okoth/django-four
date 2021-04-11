@@ -160,6 +160,7 @@ def join_hood(request, slug=None):
     hood = get_object_or_404(Neighborhood, slug=slug)
     request.user.profile.hood = hood
     request.user.profile.save()
+    messages.success(request, "Welcome to Your Hood!")
     return redirect('main:detail', slug)
 
 
@@ -167,4 +168,5 @@ def leave_hood(request, slug=None):
     hood = get_object_or_404(Neighborhood, slug=slug)
     request.user.profile.hood = None
     request.user.profile.save()
+    messages.success(request, "Goodbye!")
     return redirect("main:hoods")
