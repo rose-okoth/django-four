@@ -9,5 +9,10 @@ body {
 	color:whitesmoke;
 }
 
-
+.jumbotron {
+	background:linear-gradient(135deg, #172a74, #21a9af) !important;
+	background-color:#184e8e;
+	color:whitesmoke;
+	text-align: center;
+}
 
