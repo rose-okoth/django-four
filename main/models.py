@@ -89,8 +89,8 @@ class Business(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     description = models.TextField(blank=True)
-    neighborhood = models.ForeignKey(Neighborhood, on_delete=models.CASCADE, related_name='business')
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='owner')
+    neighborhood = models.ForeignKey('Neighborhood', on_delete=models.CASCADE, related_name='business')
+    user = models.ForeignKey('Profile', on_delete=models.CASCADE, related_name='owner')
 
     def __str__(self):
         return f'{self.name} Business'
@@ -110,5 +110,5 @@ class Post(models.Model):
     title = models.CharField(max_length=120, null=True)
     post = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='post_owner')
-    hood = models.ForeignKey(Neighborhood, on_delete=models.CASCADE, related_name='hood_post')
+    user = models.ForeignKey('Profile', on_delete=models.CASCADE, related_name='post_owner')
+    hood = models.ForeignKey('Neighborhood', on_delete=models.CASCADE, related_name='hood_post')

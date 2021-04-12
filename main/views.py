@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import HoodsSerializer, ViewHoodSerializer
 from django.contrib.auth.decorators import login_required
-
+# from django.views.generic import  ListView
 
 def home(request):
     return render(request, 'index.html')
@@ -89,8 +89,8 @@ def neighborhood_detail(request,slug=None):
     
     '''
     instance = get_object_or_404(Neighborhood, slug=slug)
-    posts = Post.objects.filter()
-    business = Business.objects.filter()
+    posts = Post.objects.filter(hood=instance).order_by('-post')
+    business = Business.objects.filter(neighborhood=instance)
 
     query = request.GET.get("q")
     if query:
