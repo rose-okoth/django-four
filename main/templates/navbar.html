@@ -32,8 +32,9 @@
 
       </ul>
      
-        <form method="GET" action="">
-          <input type="text" name="q" placeholder="Search Business" value="{{ request.GET.q }}"/>
+        <form method="GET" action="{% url 'main:search' %}">
+          <input type="text" name="search_business" placeholder="Search Business" value="{{ request.GET.q }}"/>
+          <input type="submit" value="Search"/>             
         </form>
 
 

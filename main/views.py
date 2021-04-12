@@ -92,17 +92,12 @@ def neighborhood_detail(request,slug=None):
     posts = Post.objects.filter(hood=instance).order_by('-post')
     business = Business.objects.filter(neighborhood=instance)
 
-    query = request.GET.get("q")
-    if query:
-        queryset_list = queryset_list.filter(
-            Q(name__icontains=query) 
-            ).distinct()
-
     context = {
             "title":instance.name,
             "instance":instance,
             "posts":posts,
-            "business":business
+            "business":business,
+            "queryset_list":queryset_list
         }
 
     return render(request, "hood_detail.html", context)
@@ -205,3 +200,21 @@ class ViewHoodList(APIView):
         all_view_hoods = Neighborhood.objects.all()
         serializers = ViewHoodSerializer(all_view_hoods, many=True)
         return Response(serializers.data)
+
+def search_business(request, slug=None):
+    results =  None
+    if "search_business" in request.GET and request.GET["search_business"]:
+        query = request.GET.get("search_business")
+        results = Business.search_business(query)
+
+        message = f'name'
+
+    else:
+        message = "You haven't searched anything"
+
+    params = {
+            'results': results,
+            'message': message
+        }
+       
+    return render(request, 'search_results.html', params)

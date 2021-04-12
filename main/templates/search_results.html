@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<br/>
+<div class="jumbotron">
+    <h1>Search Results</h1>
+</div>
+
+<div class="container">
+    {% if results %}
+    <h5 class="text-white">Found {{results.count}} Business{{results.count|pluralize}}</h5>
+    <div class="row">
+        <div class="col-md-6">
+            {% for bus in results %}
+                <div class="card text-center"> 
+                    <div class="card-body">
+                        <h5 class="card-title">{{bus.name}}
+                        </h5>
+                        <p class="card-text">{{bus.description}}</p>
+                        <p class="card-text">Owner: <small class="text-muted">
+                            {{ bus.user.user.username|title }}</small></p>
+                         <p class="card-text">Email: <small>{{bus.email}}</small></p>
+                         <p class="card-text">Location: <small>{{bus.neighborhood}}</small></p>
+                    </div>
+                </div>
+                <br>
+            {% endfor %}
+        </div>
+        {% else %}
+        <h4 class="text-white">Found 0 Business with the name you searched </h4>
+    </div>
+    {% endif %}
+</div>
+</div>
+{% endblock %}

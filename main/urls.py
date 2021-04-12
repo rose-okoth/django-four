@@ -17,4 +17,5 @@ urlpatterns = [
     re_path(r'^(?P<slug>[\w-]+)/leave/$', views.leave_hood, name='leave'),
     path('api/hoods/', views.HoodsList.as_view()),
     path('api/view_hoods/', views.ViewHoodList.as_view()),
+    path('search/', views.search_business, name='search'),
 ]
