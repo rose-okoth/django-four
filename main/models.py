@@ -21,7 +21,7 @@ class Neighborhood(models.Model):
         width_field='width_field')   
     healthline = models.IntegerField(null=True, blank=True)
     policeline = models.IntegerField(null=True, blank=True)
-    admin = models.ForeignKey("Profile", on_delete=models.CASCADE, related_name='neighborhood')
+    admin = models.ForeignKey("Profile", on_delete=models.CASCADE, related_name='neighborhood', null=True)
 
     def __str__(self):
         return self.name
@@ -29,8 +29,15 @@ class Neighborhood(models.Model):
     def create_neighborhood(self):
         self.save
 
+    def save_neighborhood(self):
+        self.save
+
     def delete_neighborhood(self):
         self.save
+
+    @classmethod
+    def search_neighborhood(cls, name):
+        return cls.objects.filter(name__icontains=name).all()
 
     def get_absolute_url(self):
         return reverse("main:detail", kwargs={"slug": self.slug})
@@ -123,3 +130,12 @@ class Post(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey('Profile', on_delete=models.CASCADE, related_name='post_owner')
     hood = models.ForeignKey('Neighborhood', on_delete=models.CASCADE, related_name='hood_post')
+
+    def __str__(self):
+        return f'{self.name} Post'
+
+    def create_post(self):
+        self.save()
+
+    def delete_post(self):
+        self.delete()
