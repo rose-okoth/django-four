@@ -80,3 +80,26 @@ class TestBusiness(TestCase):
         business = Business.search_business('test')
         self.assertTrue(len(business) < 1)
    
+class TestPost(TestCase):
+    def setUp(self):
+        self.user = User.objects.create(username='mimi')
+        self.post = Post.objects.create(title='title', post='post', date='date')
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.post, Post))
+
+    def test_save_post(self):
+        self.post.save_post()
+        post = Post.objects.all()
+        self.assertTrue(len(post) > 0)
+
+    def test_create_posts(self):
+        self.post.save()
+        posts = Post.objects.all()
+        self.assertTrue(len(posts) > 0)
+
+    def test_delete_post(self):
+        self.post.delete_post()
+        post = Post.search_post('test')
+        self.assertTrue(len(post) < 1)
+   

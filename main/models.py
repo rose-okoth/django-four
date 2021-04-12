@@ -131,8 +131,8 @@ class Post(models.Model):
     title = models.CharField(max_length=120, null=True)
     post = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey('Profile', on_delete=models.CASCADE, related_name='post_owner')
-    hood = models.ForeignKey('Neighborhood', on_delete=models.CASCADE, related_name='hood_post')
+    user = models.ForeignKey('Profile', on_delete=models.CASCADE, related_name='post_owner', null=True)
+    hood = models.ForeignKey('Neighborhood', on_delete=models.CASCADE, related_name='hood_post', null=True)
 
     def __str__(self):
         return f'{self.name} Post'
@@ -140,5 +140,12 @@ class Post(models.Model):
     def create_post(self):
         self.save()
 
+    def save_post(self):
+        self.save
+
     def delete_post(self):
         self.delete()
+
+    @classmethod
+    def search_post(cls, title):
+        return cls.objects.filter(title__icontains=title).all()
