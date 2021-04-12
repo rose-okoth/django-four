@@ -14,12 +14,12 @@
     <br\><br\><br\><br\>
     
     {% if instance.image %}
-    <img src='{{ instance.image.url }}' class='img-responsive'/>
+    <img src='{{ instance.image.url }}' class="img-fluid"  width="260" height="236">
     {% endif %}
 
-    {% if user.username %}
+    <!-- {% if user.username %}
     <p>Posted by: {{ user.username }}</p>
-    {% endif %}
+    {% endif %} -->
     
     <div class='col-md-12'>
 
@@ -34,6 +34,9 @@
 
         <h4>Police Line:</h4>
             <p class="text-secondary">{{ instance.policeline }}</p>
+
+        <h4>Admin:</h4>
+            <p class="text-secondary">{{ instance.admin.user.username }}</p>
 
             <hr/>
 
@@ -83,7 +86,9 @@
             <h3>Businesses</h3>
                <ul>
                    {% for business in business %}
-    
+                   
+                        <img  src="{{ business.image }}" class="img-fluid" alt="" width="260" height="236">
+                        <br/>
                         <li>Name: {{ business.name }}</li>
                         <br/>
                         <li>Email: {{ business.email}}</li>    

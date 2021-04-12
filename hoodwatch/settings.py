@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import cloudinary
 import django_heroku
 import dj_database_url
 from decouple import config,Csv
@@ -46,9 +47,18 @@ INSTALLED_APPS = [
     'main',
     'accounts',
     'bootstrap4',
+    'cloudinary',
     'crispy_forms',
     'rest_framework',
 ]
+
+#add config 
+cloudinary.config(
+  cloud_name = config('CLOUD_NAME'),
+  api_key = config('API_KEY'),
+  api_secret = config('API_SECRET'),
+  secure = True
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

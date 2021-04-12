@@ -6,7 +6,7 @@ from django.utils.text import slugify
 from django.urls import reverse
 from django.dispatch import receiver
 from PIL import Image
-
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Neighborhood(models.Model):
@@ -14,6 +14,11 @@ class Neighborhood(models.Model):
     location = models.CharField(max_length=250)
     occupants = models.CharField(max_length=250)
     slug = models.SlugField(unique=True)
+    image = CloudinaryField(
+        null=True, 
+        blank=True, 
+        height_field='height_field', 
+        width_field='width_field')   
     healthline = models.IntegerField(null=True, blank=True)
     policeline = models.IntegerField(null=True, blank=True)
     admin = models.ForeignKey("Profile", on_delete=models.CASCADE, related_name='neighborhood')
@@ -29,6 +34,16 @@ class Neighborhood(models.Model):
 
     def get_absolute_url(self):
         return reverse("main:detail", kwargs={"slug": self.slug})
+
+    def save(self, *args, **kwargs):
+        super(Profile, self).save(*args, **kwargs)
+
+        img = Image.open(self.image.path)
+
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
 
 
 def create_slug(instance, new_slug=None):
@@ -89,6 +104,11 @@ class Business(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     description = models.TextField(blank=True)
+    image = CloudinaryField(
+        null=True, 
+        blank=True, 
+        height_field='height_field', 
+        width_field='width_field') 
     neighborhood = models.ForeignKey('Neighborhood', on_delete=models.CASCADE, related_name='business')
     user = models.ForeignKey('Profile', on_delete=models.CASCADE, related_name='owner')
 

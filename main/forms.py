@@ -5,7 +5,7 @@ from .models import Neighborhood, Profile, Post, Business
 class NeighborhoodForm(forms.ModelForm):
     class Meta:
         model = Neighborhood
-        fields = ('name', 'location', 'occupants', 'healthline', 'policeline', 'admin')
+        fields = ('name', 'location', 'occupants', 'image', 'healthline', 'policeline', 'admin')
 
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()
@@ -27,4 +27,4 @@ class PostForm(forms.ModelForm):
 class BusinessForm(forms.ModelForm):
     class Meta:
         model = Business
-        fields = ['name', 'email', 'description', 'neighborhood', 'user']
+        fields = ['name', 'email', 'description', 'image', 'neighborhood', 'user']
