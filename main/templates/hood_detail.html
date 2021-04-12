@@ -14,7 +14,7 @@
     <br\><br\><br\><br\>
     
     {% if instance.image %}
-    <img src='{{ instance.image.url }}' class='img-responsive'/>
+    <img src='{{ instance.image.url }}' class="img-fluid"  width="260" height="236">
     {% endif %}
 
     <!-- {% if user.username %}
@@ -86,7 +86,9 @@
             <h3>Businesses</h3>
                <ul>
                    {% for business in business %}
-    
+                   
+                        <img  src="{{ business.image }}" class="img-fluid" alt="" width="260" height="236">
+                        <br/>
                         <li>Name: {{ business.name }}</li>
                         <br/>
                         <li>Email: {{ business.email}}</li>    
