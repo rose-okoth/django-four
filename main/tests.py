@@ -56,4 +56,27 @@ class TestNeighborhood(TestCase):
         self.neighborhood.delete_neighborhood()
         neighborhood = Neighborhood.search_neighborhood('test')
         self.assertTrue(len(neighborhood) < 1)
+
+class TestBusiness(TestCase):
+    def setUp(self):
+        self.user = User.objects.create(username='mimi')
+        self.business = Business.objects.create(name='business', email='b@gmail.com', description='description', image='https://picture.com')
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.business, Business))
+
+    def test_save_business(self):
+        self.business.save_business()
+        business = Business.objects.all()
+        self.assertTrue(len(business) > 0)
+
+    def test_create_businesses(self):
+        self.business.save()
+        businesses = Business.objects.all()
+        self.assertTrue(len(businesses) > 0)
+
+    def test_delete_business(self):
+        self.business.delete_business()
+        business = Business.search_business('test')
+        self.assertTrue(len(business) < 1)
    

@@ -107,14 +107,17 @@ class Business(models.Model):
         blank=True, 
         height_field='height_field', 
         width_field='width_field') 
-    neighborhood = models.ForeignKey('Neighborhood', on_delete=models.CASCADE, related_name='business')
-    user = models.ForeignKey('Profile', on_delete=models.CASCADE, related_name='owner')
+    neighborhood = models.ForeignKey('Neighborhood', on_delete=models.CASCADE, related_name='business', null='True')
+    user = models.ForeignKey('Profile', on_delete=models.CASCADE, related_name='owner', null='True')
 
     def __str__(self):
         return f'{self.name} Business'
 
     def create_business(self):
         self.save()
+
+    def save_business(self):
+        self.save
 
     def delete_business(self):
         self.delete()
