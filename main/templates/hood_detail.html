@@ -18,10 +18,7 @@
     <img src='{{ instance.image.url }}' class="img-fluid" width="100%">
     {% endif %}
 </div>
-    <!-- {% if user.username %}
-    <p>Posted by: {{ user.username }}</p>
-    {% endif %} -->
-    
+
     <div class='col-md-6'>
 
         <h4>Location:</h4>
@@ -64,13 +61,17 @@
             <ul>
                 {% for post in posts %}
 
-                <li>Title: {{ post.title }}</li>
-                <br/>
-                <li>Post: {{ post.post }}</li>    
-                <br/>
-                <li>Date: {{ post.date }}</li>                        
-                <br/>
-                <li>By: {{ post.user.user.username }}</li>
+                <h6>Title:</h6>
+                <p class="text-secondary">{{ post.title }}</p>
+              
+                <h6>Post:</h6>
+                <p class="text-secondary">{{ post.post }}</p>
+                
+                <h6>Date:</h6>
+                <p class="text-secondary">{{ post.date }}</p>
+                
+                <h6>By:</h6>
+                <p class="text-secondary">{{ post.user.user.username }}</p>
                 <hr/>
 
                 {% endfor %}
@@ -93,13 +94,17 @@
                    
                         <img src="{{ business.image.url }}" class="img-fluid" alt="" width="260" height="236">
                         <br/>
-                        <li>Name: {{ business.name }}</li>
-                        <br/>
-                        <li>Email: {{ business.email}}</li>    
-                        <br/>
-                        <li>Description: {{ business.description }}</li>                        
-                        <br/>
-                        <li>By: {{ business.user.user.username }}</li>
+                        <h6>Name:</h6>
+                        <p class="text-secondary">{{ business.name }}</p>
+                       
+                        <h6>Email:</h6>
+                        <p class="text-secondary">{{ business.email }}</p>
+                        
+                        <h6>Description:</h6>
+                        <p class="text-secondary">{{ business.description }}</p>
+                       
+                        <h6>By:</h6>
+                        <p class="text-secondary">{{ business.user.user.username }}</p>
                         <hr/>
     
                    {% endfor %}
