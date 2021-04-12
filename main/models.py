@@ -29,6 +29,9 @@ class Neighborhood(models.Model):
     def create_neighborhood(self):
         self.save
 
+    def update_neighborhood(self):
+        self.save
+
     def save_neighborhood(self):
         self.save
 
@@ -116,6 +119,9 @@ class Business(models.Model):
     def create_business(self):
         self.save()
 
+    def update_business(self):
+        self.save
+
     def save_business(self):
         self.save
 
@@ -139,6 +145,9 @@ class Post(models.Model):
 
     def create_post(self):
         self.save()
+
+    def update_post(self):
+        self.save
 
     def save_post(self):
         self.save

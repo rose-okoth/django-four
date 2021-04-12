@@ -47,6 +47,11 @@ class TestNeighborhood(TestCase):
         neighborhood = Neighborhood.objects.all()
         self.assertTrue(len(neighborhood) > 0)
 
+    def test_update_neighborhood(self):
+        self.neighborhood.update_neighborhood()
+        neighborhood = Neighborhood.objects.all()
+        self.assertTrue(len(neighborhood) > 0)
+
     def test_create_neighborhoods(self):
         self.neighborhood.save()
         neighborhoods = Neighborhood.objects.all()
@@ -70,6 +75,11 @@ class TestBusiness(TestCase):
         business = Business.objects.all()
         self.assertTrue(len(business) > 0)
 
+    def test_update_business(self):
+        self.business.update_business()
+        business = Business.objects.all()
+        self.assertTrue(len(business) > 0)
+
     def test_create_businesses(self):
         self.business.save()
         businesses = Business.objects.all()
@@ -90,6 +100,11 @@ class TestPost(TestCase):
 
     def test_save_post(self):
         self.post.save_post()
+        post = Post.objects.all()
+        self.assertTrue(len(post) > 0)
+
+    def test_update_post(self):
+        self.post.update_post()
         post = Post.objects.all()
         self.assertTrue(len(post) > 0)
 
