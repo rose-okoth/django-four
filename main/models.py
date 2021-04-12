@@ -6,7 +6,7 @@ from django.utils.text import slugify
 from django.urls import reverse
 from django.dispatch import receiver
 from PIL import Image
-
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Neighborhood(models.Model):
@@ -14,6 +14,11 @@ class Neighborhood(models.Model):
     location = models.CharField(max_length=250)
     occupants = models.CharField(max_length=250)
     slug = models.SlugField(unique=True)
+    image = CloudinaryField(
+        null=True, 
+        blank=True, 
+        height_field='height_field', 
+        width_field='width_field')   
     healthline = models.IntegerField(null=True, blank=True)
     policeline = models.IntegerField(null=True, blank=True)
     admin = models.ForeignKey("Profile", on_delete=models.CASCADE, related_name='neighborhood')

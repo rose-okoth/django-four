@@ -17,9 +17,9 @@
     <img src='{{ instance.image.url }}' class='img-responsive'/>
     {% endif %}
 
-    {% if user.username %}
+    <!-- {% if user.username %}
     <p>Posted by: {{ user.username }}</p>
-    {% endif %}
+    {% endif %} -->
     
     <div class='col-md-12'>
 
@@ -34,6 +34,9 @@
 
         <h4>Police Line:</h4>
             <p class="text-secondary">{{ instance.policeline }}</p>
+
+        <h4>Admin:</h4>
+            <p class="text-secondary">{{ instance.admin.user.username }}</p>
 
             <hr/>
 
