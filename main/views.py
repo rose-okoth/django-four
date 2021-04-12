@@ -97,7 +97,6 @@ def neighborhood_detail(request,slug=None):
             "instance":instance,
             "posts":posts,
             "business":business,
-            "queryset_list":queryset_list
         }
 
     return render(request, "hood_detail.html", context)
