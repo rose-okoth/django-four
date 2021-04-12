@@ -31,21 +31,25 @@
                         {% if user.is_authenticated %}
 
                             <li class="nav-item" role="presentation"><a class="nav-link active" href="{%url 'main:hoods'%}">Hoods</a></li>
-                            <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">Accounts</a>
+                            <li class="nav-item" role="presentation"><a class="nav-link active" href="{%url 'main:create'%}">New Hood</a></li>
+                            <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">{{ user.username }}</a>
                                 <div class="dropdown-menu" role="menu">
-                                    <a class="dropdown-item" role="presentation" href="{%url 'main:create'%}">New Hood</a>
                                     <a class="dropdown-item" role="presentation" href="{% url 'main:profile' %}">Profile</a>
                                     <a class="dropdown-item" role="presentation" href="{%url 'accounts:logout'%}">Logout</a></div>
                             </li>
                         </ul>
-                        <form class="form-inline mr-auto" target="_self">
-                            <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" name="search" id="search-field"></div>
-
+                        
                         {% else %}
 
                         </form><span class="navbar-text"> 
                             <a href="{%url 'accounts:login'%}" class="login">Log In</a></span>
                             <a class="btn btn-light action-button" role="button" href="{%url 'accounts:signup'%}">Sign Up</a></div>
+
+
+                            <form method="GET" action="{% url 'main:search' %}">
+                                <input type="text" name="search_business" placeholder="Search Business" value="{{ request.GET.q }}"/>
+                                <input type="submit" value="Search"/>             
+                              </form>
 
                         {% endif %}
 
