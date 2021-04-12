@@ -94,6 +94,11 @@ class Business(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     description = models.TextField(blank=True)
+    image = CloudinaryField(
+        null=True, 
+        blank=True, 
+        height_field='height_field', 
+        width_field='width_field') 
     neighborhood = models.ForeignKey('Neighborhood', on_delete=models.CASCADE, related_name='business')
     user = models.ForeignKey('Profile', on_delete=models.CASCADE, related_name='owner')
 
