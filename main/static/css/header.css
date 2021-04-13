@@ -1,4 +1,4 @@
-.header-blue {
+body {
 	background:linear-gradient(135deg, #172a74, #21a9af);
 	background-color:#184e8e;
 	padding-bottom:80px;
@@ -220,5 +220,4 @@
 	transform:rotate(-19deg);
 	opacity:0.2;
   }
-  
   
