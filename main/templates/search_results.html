@@ -8,7 +8,6 @@
 <div class="jumbotron">
     <h1>Search Results</h1>
 </div>
-
 <div class="container">
     {% if results %}
     <h5 class="text-white">Found {{results.count}} Business{{results.count|pluralize}}</h5>
@@ -17,6 +16,7 @@
             {% for bus in results %}
                 <div class="card text-center"> 
                     <div class="card-body">
+                        <img src="{{ business.image.url }}" class="img-fluid" alt="" width="260" height="236">
                         <h5 class="card-title">{{bus.name}}
                         </h5>
                         <p class="card-text">{{bus.description}}</p>
